@@ -5,8 +5,14 @@ import WeatherForm from "./components/WeatherForm";
 import WeatherDisplay from "./components/WeatherDisplay";
 import { fetchWeather } from "../../services/weather-data";
 
+interface WeatherData {
+  temp: any;
+  weather: any;
+  city_name: any;
+}
+
 const Home: React.FC = () => {
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async (city: string) => {
