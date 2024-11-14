@@ -12,7 +12,12 @@ export const fetchWeather = async (city: string) => {
         "X-RapidAPI-Host": "weatherbit-v1-mashape.p.rapidapi.com",
       },
     });
-    return response.data;
+    const weatherData = response.data.data[0];
+    return {
+      temp: weatherData.temp,
+      weather: weatherData.weather,
+      city_name: weatherData.city_name,
+    };
   } catch (error) {
     console.error("Error fetching weather data:", error);
     throw error;
