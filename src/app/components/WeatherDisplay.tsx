@@ -2,22 +2,28 @@
 
 interface WeatherDisplayProps {
   weather: {
-    main: {
-      temp: number;
-    };
+    temp: number;
     weather: {
       description: string;
-    }[];
-    name: string;
+    };
+    city_name: string;
   };
 }
 
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weather }) => {
   return (
     <div className="weather-display">
-      <h2>{weather.name}</h2>
-      <p>{weather.weather[0].description}</p>
-      <p>{weather.main.temp}°C</p>
+      <h2>{weather.city_name}</h2>
+      {weather.weather ? (
+        <p>{weather.weather.description}</p>
+      ) : (
+        <p>No weather description available</p>
+      )}
+      {weather.temp !== undefined ? (
+        <p>{weather.temp}°C</p>
+      ) : (
+        <p>No temperature data available</p>
+      )}
     </div>
   );
 };
